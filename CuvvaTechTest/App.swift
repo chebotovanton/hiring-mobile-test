@@ -5,7 +5,7 @@ import Combine
 struct CuvvaTechTestApp: App {
     
     // TODO: Replace mocks with custom implementations
-    private static let useLive: Bool = false
+    private static let useLive: Bool = true
     
     private var appModel: AppViewModel = {
         

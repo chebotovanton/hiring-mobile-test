@@ -6,9 +6,13 @@ let apiJsonDecoder: JSONDecoder = {
     let jsonDecoder = JSONDecoder()
 
     // TODO: Configure
- 
+    jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
+    
     return jsonDecoder
-
 }()
 
 
@@ -16,9 +20,35 @@ let apiJsonDecoder: JSONDecoder = {
 
 typealias JSONResponse = [JSONEvent]
 
-struct JSONEvent: Decodable, Identifiable {
+// WIP. Return identifiable here
+struct JSONEvent: Decodable/*, Identifiable*/ {
 
-    let id: String
+    // WIP. What to do with the id?
+//    let id: String
 
-    // TODO: Add remaining properties
+    let type: String
+    let payload: Payload
+    // WIP. Add remaining properties
+}
+
+struct Payload: Decodable {
+    let policyId: String
+    let vehicle: JSONVehicle?
+    let startDate: Date?
+    let endDate: Date?
+}
+
+struct JSONVehicle: Decodable {
+    let prettyVrm: String
+    let make: String
+    let model: String
+
+    //WIP. Do I need the rest of this info?
+    //"prettyVrm": "MA77 GRO",
+    //        "make": "Volkswagen",
+    //        "model": "Polo",
+    //        "variant": "SE 16V",
+    //        "color": "Silver",
+    //        "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis tortor pulvinar, lacinia leo sit amet, iaculis ligula. Maecenas accumsan condimentum lectus, posuere finibus lorem sollicitudin non."
+
 }

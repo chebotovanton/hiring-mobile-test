@@ -13,6 +13,7 @@ protocol PolicyUpdaterProtocol {
     func cancelPolicy(policies: inout [Policy], event: JSONEvent)
 }
 
+// WIP. Cover with tests
 final class PolicyUpdater: PolicyUpdaterProtocol {
     func createNewPolicy(event: JSONEvent, vehicles: inout [Vehicle]) -> Policy? {
         guard let startDate = event.payload.startDate,
@@ -20,17 +21,16 @@ final class PolicyUpdater: PolicyUpdaterProtocol {
               let jsonVehicle = event.payload.vehicle else {
             return nil
         }
-        let vehicleId = jsonVehicle.make + jsonVehicle.model + jsonVehicle.prettyVrm
+        let vehicleId = self.generateId(for: jsonVehicle)
         
         let vehicle: Vehicle
         if let existingVehicle = vehicles.first(where: { $0.id == vehicleId }) {
             vehicle = existingVehicle
         } else {
             vehicle = Vehicle(
-                // WIP. WHat's the vehicle id?
                 id: vehicleId,
                 displayVRM: jsonVehicle.prettyVrm,
-                makeModel: jsonVehicle.make
+                makeModel: "\(jsonVehicle.make) \(jsonVehicle.model)"
             )
             vehicles.append(vehicle)
         }
@@ -65,5 +65,10 @@ final class PolicyUpdater: PolicyUpdaterProtocol {
             term: newTerm,
             vehicle: policyToExtend.vehicle)
         policies[policyToCancelIndex] = cancelledPolicy
+    }
+    
+    private func generateId(for vehicle: JSONVehicle) -> String {
+        // Chebotov. It would be nice to get an id from the server
+        return vehicle.make + vehicle.model + vehicle.prettyVrm
     }
 }

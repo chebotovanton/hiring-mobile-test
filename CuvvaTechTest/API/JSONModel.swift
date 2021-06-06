@@ -36,13 +36,17 @@ enum EventType: String, Decodable {
     }
 }
 
-// WIP. Not sure about Identifiable here. There are no good id candidates in returned JSON
-struct JSONEvent: Decodable/*, Identifiable*/ {
-
-//    let id: String
+struct JSONEvent: Decodable, Identifiable {
+    // Chebotov. It would be nice to get an id from the server
+    let id: String = UUID().uuidString
 
     let type: EventType
     let payload: JSONPayload
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+        case payload
+    }
 }
 
 // WIP. It would be nice to handle non-existing parameters in a more elegant way

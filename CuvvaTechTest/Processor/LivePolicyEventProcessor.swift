@@ -9,11 +9,12 @@ class LivePolicyEventProcessor: PolicyEventProcessor {
     }
     
     func retrieve(for: Date) -> PolicyData {
-        // Chebotov. It is possible to get rid of a vehicles array here. I think it will make code harder to understand. And less effective as well, we'll need to create a historic vehicles array from scratch on every request
+        // Chebotov. It is possible to get rid of the vehicles array here. I think it will make code harder to understand. And less effective as well, we'll need to create a historic vehicles array from scratch on every request
         let (policies, vehicles) = self.policyStorage.retrieve()
         
         var activePolicies: [Policy] = []
         for policy in policies {
+            // Chebotov. It's not very clear what to do with policies with the startDate in future. Let's consider them active for now
             if `for`.timeIntervalSince(policy.term.startDate) > policy.term.duration {
                 policy.vehicle.historicalPolicies.append(policy)
             } else {

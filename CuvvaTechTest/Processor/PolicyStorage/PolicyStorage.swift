@@ -13,7 +13,7 @@ protocol PolicyStorageProtocol {
     var policies: [Policy] { get }
     var vehicles: [Vehicle] { get }
 }
-// WIP. Cover this with tests
+
 class PolicyStorage: PolicyStorageProtocol {
     private(set) var policies: [Policy] = []
     private(set) var vehicles: [Vehicle] = []

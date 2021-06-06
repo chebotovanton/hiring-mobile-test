@@ -88,6 +88,7 @@
 		9FE8F0C1266D218900D67CB7 /* MockTestsPolicyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTestsPolicyStorage.swift; sourceTree = "<group>"; };
 		9FE8F0C6266D3BBC00D67CB7 /* MockPolicyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPolicyStorage.swift; sourceTree = "<group>"; };
 		9FE8F0C8266D3C9C00D67CB7 /* PolicyStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyStorageTests.swift; sourceTree = "<group>"; };
+		9FE8F0CA266D57C800D67CB7 /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				5B27D9E4266A38DB003127C5 /* README.md */,
+				9FE8F0CA266D57C800D67CB7 /* Notes */,
 				2E6AE0B92649CAE900EF31D6 /* CuvvaTechTest */,
 				2E6AE0CB2649CAEB00EF31D6 /* CuvvaTechTestTests */,
 				2E6AE0D62649CAEB00EF31D6 /* CuvvaTechTestUITests */,

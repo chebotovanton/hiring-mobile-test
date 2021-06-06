@@ -20,13 +20,30 @@ let apiJsonDecoder: JSONDecoder = {
 
 typealias JSONResponse = [JSONEvent]
 
+enum EventType: String, Decodable {
+    case unknown
+    case created
+    case extended
+    case cancelled
+    
+    init(from decoder: Decoder) throws {
+        let label = try decoder.singleValueContainer().decode(String.self)
+        switch label {
+        case "policy_created": self = .created
+        case "policy_extension": self = .extended
+        case "policy_cancelled": self = .cancelled
+        default: self = .unknown
+        }
+    }
+}
+
 // WIP. Not sure about Identifiable here. There are no good id candidates in returned JSON
 struct JSONEvent: Decodable/*, Identifiable*/ {
 
     // WIP. What to do with the id?
 //    let id: String
 
-    let type: String
+    let type: EventType
     let payload: JSONPayload
 }
 
@@ -43,13 +60,4 @@ struct JSONVehicle: Decodable {
     let prettyVrm: String
     let make: String
     let model: String
-
-    //WIP. Do I need the rest of this info?
-    //"prettyVrm": "MA77 GRO",
-    //        "make": "Volkswagen",
-    //        "model": "Polo",
-    //        "variant": "SE 16V",
-    //        "color": "Silver",
-    //        "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis tortor pulvinar, lacinia leo sit amet, iaculis ligula. Maecenas accumsan condimentum lectus, posuere finibus lorem sollicitudin non."
-
 }

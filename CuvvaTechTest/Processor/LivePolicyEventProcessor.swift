@@ -3,47 +3,58 @@ import Foundation
 class LivePolicyEventProcessor: PolicyEventProcessor {
     
     private var policies: [Policy] = []
+    private var vehicles: [Vehicle] = []
     
     // WIP. Make it more functional?
     func store(json: JSONResponse) {
-        // WIP. Convert JSON response to policies here. Add tests for this coversion?
+        // WIP. Add tests for this conversion? Need to find out the requirements first
         var policies: [Policy] = []
+        var vehicles: [Vehicle] = []
         
         json.sorted(by: { $0.payload.timestamp > $1.payload.timestamp })
             .forEach { event in
             switch event.type {
-            // WIP. Move constants to enum
-            case "policy_created":
-                if let policy = self.createNewPolicy(event: event) {
+            case .created:
+                if let policy = self.createNewPolicy(event: event, vehicles: &vehicles) {
                     policies.append(policy)
                 }
-            case "policy_extension":
+            case .extended:
                 self.extendPolicy(policies: policies, event: event)
-            case "policy_cancelled":
+            case .cancelled:
                 self.cancelPolicy(policies: policies, event: event)
             default:
                 return
             }
         }
-        
         self.policies = policies
+        self.vehicles = vehicles
     }
     
-    private func createNewPolicy(event: JSONEvent) -> Policy? {
+    private func createNewPolicy(event: JSONEvent, vehicles: inout [Vehicle]) -> Policy? {
         guard let startDate = event.payload.startDate,
               let endDate = event.payload.endDate,
-              let vehicle = event.payload.vehicle else {
+              let jsonVehicle = event.payload.vehicle else {
             return nil
         }
+        let vehicleId = jsonVehicle.make + jsonVehicle.model + jsonVehicle.prettyVrm
+        
+        let vehicle: Vehicle
+        if let existingVehicle = vehicles.first(where: { $0.id == vehicleId }) {
+            vehicle = existingVehicle
+        } else {
+            vehicle = Vehicle(
+                // WIP. WHat's the vehicle id?
+                id: vehicleId,
+                displayVRM: jsonVehicle.prettyVrm,
+                makeModel: jsonVehicle.make
+            )
+            vehicles.append(vehicle)
+        }
+
         return Policy(
             id: event.payload.policyId,
             term: PolicyTerm(startDate: startDate, duration: endDate.timeIntervalSince(startDate)),
-            vehicle: Vehicle(
-                // WIP. WHat's the vehicle id?
-                id: "id",
-                displayVRM: vehicle.prettyVrm,
-                makeModel: vehicle.make
-            )
+            vehicle: vehicle
         )
     }
 
@@ -59,8 +70,20 @@ class LivePolicyEventProcessor: PolicyEventProcessor {
     }
     
     func retrieve(for: Date) -> PolicyData {
-        // WIP. Process policies by date here
-        return PolicyData(activePolicies: self.policies,
-                          historicVehicles: [])
+        var activePolicies: [Policy] = []
+        for policy in self.policies {
+            // WIP. remove 3600 'fix'
+            if `for`.timeIntervalSince(policy.term.startDate) > policy.term.duration + 3600 {
+                policy.vehicle.historicalPolicies.append(policy)
+            } else {
+                policy.vehicle.activePolicy = policy
+                activePolicies.append(policy)
+            }
+        }
+        
+        let historicVehicle = vehicles.filter { $0.activePolicy == nil }
+        
+        return PolicyData(activePolicies: activePolicies,
+                          historicVehicles: historicVehicle)
     }
 }

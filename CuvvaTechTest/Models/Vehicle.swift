@@ -9,7 +9,11 @@ class Vehicle: Identifiable, ObservableObject {
     @Published var activePolicy: Policy?
     @Published var historicalPolicies: [Policy]
     
-    init(id: String, displayVRM: String, makeModel: String, activePolicy: Policy? = nil, historicalPolicies: [Policy] = .init()) {
+    init(id: String,
+         displayVRM: String,
+         makeModel: String,
+         activePolicy: Policy? = nil,
+         historicalPolicies: [Policy] = .init()) {
         self.id = id
         self.displayVRM = displayVRM
         self.makeModel = makeModel

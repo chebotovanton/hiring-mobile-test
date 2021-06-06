@@ -26,24 +26,12 @@ struct CuvvaTechTestApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView(model: appModel)
-        
-            
-            /**
-                TODO: Supply own PolicyTermFormatter implementation
-            */
-            
-//               .environment(\.policyTermFormatter, LivePolicyTermFormatter())
-            
-            
+                .environment(\.policyTermFormatter, LivePolicyTermFormatter())
             /**
                 The app uses a static time by default
                 TODO: Uncomment the line below to use the device time
             */
-            
 //               .environment(\.now, LiveTime())
-            
-            
-            
         }
     }
 }

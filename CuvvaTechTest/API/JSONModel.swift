@@ -5,7 +5,7 @@ import Foundation
 let apiJsonDecoder: JSONDecoder = {
     let jsonDecoder = JSONDecoder()
 
-    // TODO: Configure
+    // WIP. Do I need any other configuration here?
     jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
     
     let dateFormatter = DateFormatter()
@@ -20,18 +20,17 @@ let apiJsonDecoder: JSONDecoder = {
 
 typealias JSONResponse = [JSONEvent]
 
-// WIP. Return identifiable here
+// WIP. Not sure about Identifiable here. There are no good id candidates in returned JSON
 struct JSONEvent: Decodable/*, Identifiable*/ {
 
     // WIP. What to do with the id?
 //    let id: String
 
     let type: String
-    let payload: Payload
-    // WIP. Add remaining properties
+    let payload: JSONPayload
 }
 
-struct Payload: Decodable {
+struct JSONPayload: Decodable {
     let policyId: String
     let vehicle: JSONVehicle?
     let startDate: Date?

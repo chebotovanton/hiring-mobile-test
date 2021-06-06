@@ -16,5 +16,4 @@ class Vehicle: Identifiable, ObservableObject {
         self._activePolicy = .init(initialValue: activePolicy)
         self._historicalPolicies = .init(wrappedValue: historicalPolicies)
     }
-    
 }

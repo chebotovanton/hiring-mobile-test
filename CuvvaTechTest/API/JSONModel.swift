@@ -5,7 +5,6 @@ import Foundation
 let apiJsonDecoder: JSONDecoder = {
     let jsonDecoder = JSONDecoder()
 
-    // WIP. Do I need any other configuration here?
     jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
     
     let dateFormatter = DateFormatter()
@@ -40,7 +39,6 @@ enum EventType: String, Decodable {
 // WIP. Not sure about Identifiable here. There are no good id candidates in returned JSON
 struct JSONEvent: Decodable/*, Identifiable*/ {
 
-    // WIP. What to do with the id?
 //    let id: String
 
     let type: EventType

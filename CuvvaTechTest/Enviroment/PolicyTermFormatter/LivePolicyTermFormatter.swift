@@ -25,7 +25,6 @@ struct LivePolicyTermFormatter: PolicyTermFormatter {
         return resultString + " Policy"
     }
     
-    // WIP. All the policies are expired
     func durationRemainingString(for: PolicyTerm, relativeTo: Date) -> String {
         let duration = `for`.duration
         let passedTime = relativeTo.timeIntervalSince(`for`.startDate)
@@ -38,7 +37,6 @@ struct LivePolicyTermFormatter: PolicyTermFormatter {
         return min(max(progress, 0), 1)
     }
     
-    // WIP. How to see this in the app?
     func policyDateString(for: Date) -> String {
 //        "Mon, 9th Jan 2007 at 9:41am"
         return self.dateFormatter.string(from: `for`)

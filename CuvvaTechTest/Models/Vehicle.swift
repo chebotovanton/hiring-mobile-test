@@ -21,3 +21,11 @@ class Vehicle: Identifiable, ObservableObject {
         self._historicalPolicies = .init(wrappedValue: historicalPolicies)
     }
 }
+
+extension Vehicle: Equatable {
+    static func == (lhs: Vehicle, rhs: Vehicle) -> Bool {
+        return lhs.id == rhs.id &&
+            lhs.displayVRM == rhs.displayVRM &&
+            lhs.makeModel == rhs.makeModel
+    }
+}

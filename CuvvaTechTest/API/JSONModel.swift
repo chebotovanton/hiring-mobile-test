@@ -58,6 +58,7 @@ struct JSONPayload: Decodable {
     let endDate: Date?
 }
 
+// Chebotov. It would be useful to get an id from the server. Can't use UUID here since the same vehicle can be recieved multiple times.
 struct JSONVehicle: Decodable {
     let prettyVrm: String
     let make: String

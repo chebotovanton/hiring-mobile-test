@@ -15,7 +15,7 @@ struct CuvvaTechTestApp: App {
                 policyStorage: MockPolicyStorage()
             )
         }
-        let policyStorage = PolicyStorage(policyUpdater: PolicyUpdater())
+        let policyStorage = PolicyStorage()
         
         return .init(
             apiClient: .live,
@@ -88,7 +88,7 @@ class AppViewModel: ObservableObject {
                     }
                 },
             receiveValue: { response in
-                // WIP. Now we can add a test for this as well
+                // Chebotov. Now we can add a test to check the new response is stored as well
                 self.policyStorage.store(json: response)
                 self.refreshData(for: date())
             }

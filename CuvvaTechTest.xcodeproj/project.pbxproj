@@ -30,9 +30,10 @@
 		2E6AE0D82649CAEB00EF31D6 /* CuvvaTechTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AE0D72649CAEB00EF31D6 /* CuvvaTechTestUITests.swift */; };
 		2E6AE0E6264FAE3200EF31D6 /* EnviromentFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6AE0E5264FAE3200EF31D6 /* EnviromentFormatters.swift */; };
 		9FE8F0BC266D1B8B00D67CB7 /* LivePolicyEventProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8F0BB266D1B8B00D67CB7 /* LivePolicyEventProcessorTests.swift */; };
-		9FE8F0BE266D1DD000D67CB7 /* PolicyUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8F0BD266D1DD000D67CB7 /* PolicyUpdater.swift */; };
 		9FE8F0C0266D1EBC00D67CB7 /* PolicyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8F0BF266D1EBC00D67CB7 /* PolicyStorage.swift */; };
 		9FE8F0C2266D218900D67CB7 /* MockTestsPolicyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8F0C1266D218900D67CB7 /* MockTestsPolicyStorage.swift */; };
+		9FE8F0C7266D3BBC00D67CB7 /* MockPolicyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8F0C6266D3BBC00D67CB7 /* MockPolicyStorage.swift */; };
+		9FE8F0C9266D3C9C00D67CB7 /* PolicyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8F0C8266D3C9C00D67CB7 /* PolicyStorageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,9 +84,10 @@
 		2E6AE0E5264FAE3200EF31D6 /* EnviromentFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnviromentFormatters.swift; sourceTree = "<group>"; };
 		5B27D9E4266A38DB003127C5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9FE8F0BB266D1B8B00D67CB7 /* LivePolicyEventProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePolicyEventProcessorTests.swift; sourceTree = "<group>"; };
-		9FE8F0BD266D1DD000D67CB7 /* PolicyUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyUpdater.swift; sourceTree = "<group>"; };
 		9FE8F0BF266D1EBC00D67CB7 /* PolicyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyStorage.swift; sourceTree = "<group>"; };
 		9FE8F0C1266D218900D67CB7 /* MockTestsPolicyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTestsPolicyStorage.swift; sourceTree = "<group>"; };
+		9FE8F0C6266D3BBC00D67CB7 /* MockPolicyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPolicyStorage.swift; sourceTree = "<group>"; };
+		9FE8F0C8266D3C9C00D67CB7 /* PolicyStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyStorageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +251,7 @@
 		9FE8F0B8266D1B4A00D67CB7 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				9FE8F0C8266D3C9C00D67CB7 /* PolicyStorageTests.swift */,
 				9FE8F0BB266D1B8B00D67CB7 /* LivePolicyEventProcessorTests.swift */,
 				9FE8F0C5266D2BDC00D67CB7 /* Mocks */,
 			);
@@ -259,7 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				9FE8F0BF266D1EBC00D67CB7 /* PolicyStorage.swift */,
-				9FE8F0BD266D1DD000D67CB7 /* PolicyUpdater.swift */,
+				9FE8F0C6266D3BBC00D67CB7 /* MockPolicyStorage.swift */,
 			);
 			path = PolicyStorage;
 			sourceTree = "<group>";
@@ -418,7 +421,7 @@
 				2E33523D26540CFB0004CD5A /* LiveTime.swift in Sources */,
 				2E33522E2652EA540004CD5A /* JSONModel.swift in Sources */,
 				9FE8F0C0266D1EBC00D67CB7 /* PolicyStorage.swift in Sources */,
-				9FE8F0BE266D1DD000D67CB7 /* PolicyUpdater.swift in Sources */,
+				9FE8F0C7266D3BBC00D67CB7 /* MockPolicyStorage.swift in Sources */,
 				2E3352372652F5A80004CD5A /* Policy.swift in Sources */,
 				2E3352312652ECED0004CD5A /* APIClient.swift in Sources */,
 				2E6AE0BB2649CAE900EF31D6 /* App.swift in Sources */,
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6AE0CD2649CAEB00EF31D6 /* CuvvaTechTestTests.swift in Sources */,
+				9FE8F0C9266D3C9C00D67CB7 /* PolicyStorageTests.swift in Sources */,
 				9FE8F0C2266D218900D67CB7 /* MockTestsPolicyStorage.swift in Sources */,
 				9FE8F0BC266D1B8B00D67CB7 /* LivePolicyEventProcessorTests.swift in Sources */,
 			);

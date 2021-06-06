@@ -30,9 +30,11 @@ struct JSONEvent: Decodable/*, Identifiable*/ {
     let payload: JSONPayload
 }
 
+// WIP. It would be nice to handle non-existing parameters in a more elegant way
 struct JSONPayload: Decodable {
     let policyId: String
     let vehicle: JSONVehicle?
+    let timestamp: Date
     let startDate: Date?
     let endDate: Date?
 }

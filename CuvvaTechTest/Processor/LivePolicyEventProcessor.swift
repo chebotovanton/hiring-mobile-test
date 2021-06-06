@@ -9,8 +9,8 @@ class LivePolicyEventProcessor: PolicyEventProcessor {
         // WIP. Convert JSON response to policies here. Add tests for this coversion?
         var policies: [Policy] = []
         
-        // WIP. Sort events by date, so cancel and extension go after the creation?
-        for event in json {
+        json.sorted(by: { $0.payload.timestamp > $1.payload.timestamp })
+            .forEach { event in
             switch event.type {
             // WIP. Move constants to enum
             case "policy_created":

@@ -49,7 +49,7 @@ struct JSONEvent: Decodable, Identifiable {
     }
 }
 
-// WIP. It would be nice to handle non-existing parameters in a more elegant way
+// Chebotov. It would be nice to handle non-existing parameters in a more elegant way
 struct JSONPayload: Decodable {
     let policyId: String
     let vehicle: JSONVehicle?

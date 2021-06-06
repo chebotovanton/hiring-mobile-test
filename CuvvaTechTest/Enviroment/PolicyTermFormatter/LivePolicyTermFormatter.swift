@@ -5,20 +5,17 @@ struct LivePolicyTermFormatter: PolicyTermFormatter {
     private let dateComponentsFormatter: DateComponentsFormatter
     
     init() {
-        // WIP. Inject these formatters?
         self.dateFormatter = DateFormatter()
-        self.dateFormatter.dateStyle = .medium
-        self.dateFormatter.timeStyle = .medium
+        self.dateFormatter.dateFormat = "E, d MMM yyyy h:mm a"
         
         self.dateComponentsFormatter = DateComponentsFormatter()
         self.dateComponentsFormatter.allowedUnits = [.month, .weekOfMonth, .day, .hour, .minute, .second]
-        self.dateComponentsFormatter.collapsesLargestUnit = true
         self.dateComponentsFormatter.maximumUnitCount = 1
         self.dateComponentsFormatter.unitsStyle = .full
+        self.dateComponentsFormatter.zeroFormattingBehavior = .dropAll
     }
     
     func durationString(for: TimeInterval) -> String {
-        // WIP. Transform 60 minutes to 1 hour
         guard let resultString = self.dateComponentsFormatter.string(from: `for`) else {
             return "Duration unknown"
         }
@@ -38,7 +35,6 @@ struct LivePolicyTermFormatter: PolicyTermFormatter {
     }
     
     func policyDateString(for: Date) -> String {
-//        "Mon, 9th Jan 2007 at 9:41am"
         return self.dateFormatter.string(from: `for`)
     }
 }

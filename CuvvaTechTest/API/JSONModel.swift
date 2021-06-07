@@ -8,12 +8,11 @@ let apiJsonDecoder: JSONDecoder = {
     jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
     
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
     
     return jsonDecoder
 }()
-
 
 // MARK: JSON Response Decodable
 

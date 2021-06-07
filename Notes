@@ -16,7 +16,4 @@ I got a few thoughts while working on a test task. I left some of them in the co
 General task feedback:
 1. "feel free to do a blocking synchronous hack" part in the README file doesn't make much sense since the network layer is not a part of the test task, right?
 2. durationRemainingPercent may not be the best name since it is the current progress, not the remaining percentage
-3. I'm not an expert in timezones and time formatting in general, but I think I can see 2 issues:
-   1. The timestamp field in JSON doesn't seem to be a timestamp. As far as I understand, a timestamp is the number of seconds since 1970, but there are formatted dates in JSON
-   2. Is it intentional all the returned policies are expired? I saw one has a dynamic start_date, but it looks like the timezone is a bit off. I can’t see how the client app can handle this since there is no timezone info in the server response.
-4. I'm afraid, the extension example in Readme is not correct. The dates in the example are not the same
+3. I'm afraid, the extension example in Readme is not correct. The dates in the example are not the same. This makes the original policy a 25 hours policy, and the extension overlaps with the original policy term
